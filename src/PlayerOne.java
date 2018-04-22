@@ -1,8 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import java.util.*;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -12,42 +12,56 @@ public class PlayerOne implements GameState {
 
     private GetImage image = new GetImage();
     private Random randomGenerator = new Random();
-    MouseEvent e;
-    private int x, y;
     private int letter;
     private char letterr;
+    private boolean correct = false;
+    private boolean[] blockt = {false, false, false};
+    private Time time = new Time();
+    private int round = 1;
+    int[] timeRound = new int[3];
+    int totalTime = 0;
+    int j = 0;
     GameContext context;
-    ImageClickListener click = new ImageClickListener();
     List<BufferedImage> img = new ArrayList<BufferedImage>();
     private boolean flag = true;
 
-    public PlayerOne(){}
-
-    public PlayerOne(GameContext c){
-        this.context = context;
-    }
-
     public void draw(Graphics g){
-        //System.out.println("Estoy en StatePlayerOne bienvenido");
+
+        HUD.getHud().setTurns(0);
         g.drawImage(ImageLoader.getImageLoader().getBackground(),0,0,null);
-        if(flag) {
-            letter = randomGenerator.nextInt(3);
+        HUD.getHud().hud(g, round);
+
+        if(flag == true) {
+            letter = randomGenerator.nextInt(6);
+            HUD.getHud().setTimeValue(0);
             flag = false;
         }
-
         g.setFont(new Font("Arial", Font.BOLD, 40));
-        g.drawString("¿Which Animal starts with " + image.getLetter(letter) + "?", 220, 40);
+        g.drawString("Player One... ¿Which Animal starts with " + image.getLetter(letter) + "?", 100, 40);
+        g.drawString("Round " + round, 200, 200);
+
         letterr = image.getLetter(letter);
         img = image.getImages(letterr);
+
         int x_m = 0, y_m = 250;
         for(int i = 0; i < 3; i++){
             g.drawImage(img.get(i),x_m, y_m,null);
             x_m += 350;
         }
-    }
 
+        if (blockt[0] == true && correct == false) {
+            g.drawImage(ImageLoader.getImageLoader().getBad(), 40 , 280, null);
+        }
+        if (blockt[1]== true && correct == false) {
+            g.drawImage(ImageLoader.getImageLoader().getBad(), 380 , 280, null);
+        }
+        if (blockt[2]== true && correct == false) {
+            g.drawImage(ImageLoader.getImageLoader().getBad(), 750 , 280, null);
+        }
+
+
+    }
     public void processKey(KeyEvent e){}
-    public void clickMouse(MouseEvent e) {}
     public void start(){}
     public void load(){}
     public void playerOne(){}
@@ -56,5 +70,119 @@ public class PlayerOne implements GameState {
     public void over(){}
     public void setContext(GameContext context){ this.context = context;}
 
+    public int getTimeRound(int i){
+        return timeRound[i];
+    }
+
+    public void clickMouse(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+
+        switch(letterr){
+            case 'L':
+                if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
+                    correct = true;
+                }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
+                    System.out.println("mal era el leon 1");
+                    blockt[1] = true;
+
+                }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
+                    System.out.println("mal era el leon 2");
+                    blockt[2] = true;
+                }
+                break;
+            case 'B':
+                if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
+                    System.out.println("mal era el oso 1");
+                    blockt[0] = true;
+
+                }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
+                    correct = true;
+
+
+                }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
+                    System.out.println("mal era el oso 2");
+                    blockt[2] = true;
+
+
+                }
+                break;
+            case 'P':
+                if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
+                    System.out.println("mal era el oso polar 1");
+                    blockt[0] = true;
+
+                }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
+                    correct = true;
+
+                }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
+                    System.out.println("mal era el oso polar 2");
+                    blockt[2] = true;
+
+                }
+                break;
+            case 'T':
+                if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
+                    System.out.println("mal era el tigre 1");
+                    blockt[0] = true;
+
+                }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
+                    System.out.println("mal era el tigre 2");
+                    blockt[1] = true;
+
+                }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
+                    correct = true;
+
+
+                }
+                break;
+            case'Z':
+                if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
+                    System.out.println("mal era la zebra 1");
+                    blockt[0] = true;
+
+                }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
+                    System.out.println("mal era la zebra 2");
+                    blockt[1] = true;
+
+                }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
+                    correct = true;
+
+
+                }
+                break;
+            case 'R':
+                if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
+                    System.out.println("mal era el rino 1");
+                    blockt[0] = true;
+
+                }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
+                    System.out.println("mal era el rino 2");
+                    blockt[1] = true;
+
+                }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
+                    correct = true;
+
+                }
+                break;
+        }
+    }
+
+    public void update(){
+        if(correct == true) {
+            int iter = 0;
+            iter++;
+            round ++;
+            flag = true;
+            correct = false;
+            HUD.getHud().setTimes(0,j,HUD.getHud().getTime());
+            j++;
+            img.clear();
+            for (int i = 0; i < 3; i++){
+                blockt[i] = false;
+            }
+                playerTwo();
+        }
+    }
 }
 

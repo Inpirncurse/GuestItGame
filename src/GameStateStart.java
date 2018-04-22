@@ -40,6 +40,7 @@ public class GameStateStart implements GameState{
     public void playerOne(){}
     public void playerTwo(){}
     public void over(){}
+    public void update(){}
     public void win(int winner){}
     public void clickMouse(MouseEvent e) { load();}
     public void processKey(KeyEvent e){

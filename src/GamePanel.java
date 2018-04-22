@@ -3,16 +3,16 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.text.DecimalFormat;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
+
 public class GamePanel extends JPanel implements Runnable {
 
     private static final int PWIDTH = 1000;
     private static final int PHEIGHT = 800;
-
     private Thread animator;
     private volatile boolean over = false;
     private String s;
     private GameContext game;
-
 
     public GamePanel(){
         setBackground(Color.white);
@@ -21,8 +21,9 @@ public class GamePanel extends JPanel implements Runnable {
         requestFocus();
         readyForTermination();
         game = new GameContext();
-        addMouseListener( new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
+
+        addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent e){
                 game.clickMouse(e);
             }
         });
@@ -55,18 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void gameUpdate(){
-        if(dbImage == null){
-            dbImage = createImage(PWIDTH,PHEIGHT);
-            if(dbImage == null){
-                System.out.println("Error in gameUpdate");
-                return;
-            }else{
-                dbg = dbImage.getGraphics();
-            }
-        }
-        dbg.setColor(Color.white);
-        dbg.fillRect(0,0,PWIDTH,PHEIGHT);
-        game.draw(dbg);
+        game.update();
     }
 
     private Graphics dbg;
@@ -130,7 +120,10 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+
     public static void main(String args[]){
+        Time clock = new Time();
+        clock.startTime();
         JFrame panel = new JFrame("Guess the Animal!!");
         panel.setContentPane(new GamePanel());
         panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,6 +132,5 @@ public class GamePanel extends JPanel implements Runnable {
         panel.setResizable(true);
         panel.pack();
         panel.setLocationRelativeTo(null);
-        panel.getContentPane().addMouseListener(new ImageClickListener());
     }
 }

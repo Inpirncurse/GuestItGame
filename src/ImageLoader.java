@@ -1,5 +1,6 @@
 import java.awt.image.*;
 import java.io.*;
+import java.nio.Buffer;
 import javax.imageio.*;
 
 public class ImageLoader {
@@ -10,6 +11,8 @@ public class ImageLoader {
     private BufferedImage rinoceronte;
     private BufferedImage tigre;
     private BufferedImage zebra;
+    private BufferedImage bad;
+    private BufferedImage good;
     private  BufferedImage background;
     public static ImageLoader imgLoader;
 
@@ -21,6 +24,8 @@ public class ImageLoader {
              rinoceronte = ImageIO.read(new File("src\\imagenes_animales\\rinoceronte.png"));
              tigre = ImageIO.read(new File("src\\imagenes_animales\\tigre.png"));
              zebra = ImageIO.read(new File("src\\imagenes_animales\\zebra.png"));
+             bad = ImageIO.read(new File("src\\imagenes_animales\\bad.png"));
+             good = ImageIO.read(new File("src\\imagenes_animales\\good.png"));
              background = ImageIO.read(new File("src\\imagenes_animales\\background.jpg"));
         }
         catch(IOException e){}
@@ -61,4 +66,11 @@ public class ImageLoader {
         return background;
     }
 
+    public BufferedImage getBad() {
+        return bad;
+    }
+
+    public BufferedImage getGood() {
+        return good;
+    }
 }

@@ -13,18 +13,19 @@ public class GameStateWin implements GameState {
         player = p;
     }
     public GameStateWin(GameContext context){
+
         this.context = context;
     }
 
     public void draw(Graphics g){
         i++;
-        color=new Color(122, 24, 232);
-        font=new Font("Arial", Font.BOLD, 18);
+        font = new Font("Arial", Font.BOLD, 50);
+        color = new Color(6, 185, 3);
         g.setColor(color);
         g.setFont(font);
         g.drawImage(ImageLoader.getImageLoader().getBackground(),0,0,null);
         //g.drawImage(ImageLoader.getImageLoader().getFireworks(),0,0,null);
-        g.drawString("Player "+player+" won!!",300, 20);
+        g.drawString("Player "+player+" won!!",300, 100);
         if (i>200){
             over();
         }
@@ -38,7 +39,8 @@ public class GameStateWin implements GameState {
     public void load(){}
     public void playerOne(){}
     public void playerTwo(){}
+    public void update(){}
     public void win(int winner){}
-    public void over(){ context.setState(context.getGameStateOver());}
+    public void over(){ }
 
 }

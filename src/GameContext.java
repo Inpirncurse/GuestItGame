@@ -1,10 +1,6 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.util.*;
 
 
 public class GameContext {
@@ -49,6 +45,8 @@ public class GameContext {
     public GameState getPlayerOne(){return playerOne;}
     public GameState getPlayerTwo(){return playerTwo;}
     public GameState getGameStateOver(){return over;}
+    public void update(){ currentState.update();}
+
     public GameState getGameStateWin(int winner){
         if(winner==1){
             return winOne;
@@ -57,40 +55,23 @@ public class GameContext {
             return winTwo;
         }
     }
-
-
     public void setState(GameState state){
         this.currentState = state;
     }
-    public void setContext(GameContext cont){
-
-    }
+    public void setContext(GameContext cont){ }
     public void processKey(KeyEvent e){
         currentState.processKey(e);
     }
     public void clickMouse(MouseEvent e) {
         currentState.clickMouse(e);
     }
+
     public void draw(Graphics g){
         currentState.draw(g);
     }
     public void start(){
         currentState.start();
     }
-    public void load(){
-        currentState.load();
-    }
-    public void playerOne(){
-        currentState.playerOne();
-    }
-    public void playerTwo(){
-        currentState.playerTwo();
-    }
-    public void win(int winner){
-        currentState.win(winner);
-    }
-    public void end(){
-        currentState.over();
-    }
+
 
 }

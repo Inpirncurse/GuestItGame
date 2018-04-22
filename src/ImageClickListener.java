@@ -2,9 +2,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ImageClickListener extends MouseAdapter{
+    private ImageClickDelegate delegate;
 
-    public void mouseClicked(MouseEvent e){
-        System.out.println(e.getX() + ", " + e.getY());
+    public ImageClickListener(ImageClickDelegate delegate) {
+        super();
+        this.delegate = delegate;
+        System.out.println("delegate ImageClickListener constructor: " + delegate);
     }
 
 }

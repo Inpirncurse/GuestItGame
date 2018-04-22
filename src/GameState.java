@@ -15,6 +15,7 @@ interface GameState {
     public void load();
     public void playerOne();
     public void playerTwo();
+    public void update();
     public void over();
     public void win(int winner);
     public void setContext(GameContext cont);

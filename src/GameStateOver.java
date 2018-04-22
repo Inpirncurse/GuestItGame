@@ -31,6 +31,7 @@ public class GameStateOver implements GameState {
     public void load(){}
     public void playerOne(){}
     public void playerTwo(){}
+    public void update(){}
     public void win(int winner){}
     public void over(){}
 
