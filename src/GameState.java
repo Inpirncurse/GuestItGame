@@ -9,7 +9,6 @@ import java.util.*;
 interface GameState {
 
     public void draw(Graphics g);
-    public void processKey(KeyEvent e);
     public void clickMouse(MouseEvent e);
     public void start();
     public void load();
@@ -19,6 +18,5 @@ interface GameState {
     public void over();
     public void win(int winner);
     public void setContext(GameContext cont);
-    //public void getImages();
 }
 

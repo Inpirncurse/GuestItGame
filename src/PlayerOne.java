@@ -1,8 +1,6 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 import java.util.*;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -16,17 +14,13 @@ public class PlayerOne implements GameState {
     private char letterr;
     private boolean correct = false;
     private boolean[] blockt = {false, false, false};
-    private Time time = new Time();
     private int round = 1;
-    int[] timeRound = new int[3];
-    int totalTime = 0;
     int j = 0;
     GameContext context;
     List<BufferedImage> img = new ArrayList<BufferedImage>();
     private boolean flag = true;
 
     public void draw(Graphics g){
-
         HUD.getHud().setTurns(0);
         g.drawImage(ImageLoader.getImageLoader().getBackground(),0,0,null);
         HUD.getHud().hud(g, round);
@@ -38,7 +32,6 @@ public class PlayerOne implements GameState {
         }
         g.setFont(new Font("Arial", Font.BOLD, 40));
         g.drawString("Player One... ¿Which Animal starts with " + image.getLetter(letter) + "?", 100, 40);
-        g.drawString("Round " + round, 200, 200);
 
         letterr = image.getLetter(letter);
         img = image.getImages(letterr);
@@ -58,10 +51,7 @@ public class PlayerOne implements GameState {
         if (blockt[2]== true && correct == false) {
             g.drawImage(ImageLoader.getImageLoader().getBad(), 750 , 280, null);
         }
-
-
     }
-    public void processKey(KeyEvent e){}
     public void start(){}
     public void load(){}
     public void playerOne(){}
@@ -69,11 +59,6 @@ public class PlayerOne implements GameState {
     public void win(int winner){context.setState(context.getGameStateWin(winner));}
     public void over(){}
     public void setContext(GameContext context){ this.context = context;}
-
-    public int getTimeRound(int i){
-        return timeRound[i];
-    }
-
     public void clickMouse(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
@@ -83,17 +68,14 @@ public class PlayerOne implements GameState {
                 if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
                     correct = true;
                 }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
-                    System.out.println("mal era el leon 1");
                     blockt[1] = true;
 
                 }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
-                    System.out.println("mal era el leon 2");
                     blockt[2] = true;
                 }
                 break;
             case 'B':
                 if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
-                    System.out.println("mal era el oso 1");
                     blockt[0] = true;
 
                 }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
@@ -101,7 +83,6 @@ public class PlayerOne implements GameState {
 
 
                 }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
-                    System.out.println("mal era el oso 2");
                     blockt[2] = true;
 
 
@@ -109,25 +90,21 @@ public class PlayerOne implements GameState {
                 break;
             case 'P':
                 if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
-                    System.out.println("mal era el oso polar 1");
                     blockt[0] = true;
 
                 }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
                     correct = true;
 
                 }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
-                    System.out.println("mal era el oso polar 2");
                     blockt[2] = true;
 
                 }
                 break;
             case 'T':
                 if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
-                    System.out.println("mal era el tigre 1");
                     blockt[0] = true;
 
                 }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
-                    System.out.println("mal era el tigre 2");
                     blockt[1] = true;
 
                 }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
@@ -138,11 +115,9 @@ public class PlayerOne implements GameState {
                 break;
             case'Z':
                 if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
-                    System.out.println("mal era la zebra 1");
                     blockt[0] = true;
 
                 }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
-                    System.out.println("mal era la zebra 2");
                     blockt[1] = true;
 
                 }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
@@ -153,11 +128,9 @@ public class PlayerOne implements GameState {
                 break;
             case 'R':
                 if(x >= 1 && x < 298 && y >= 251 && y < 501 && blockt[0] == false){
-                    System.out.println("mal era el rino 1");
                     blockt[0] = true;
 
                 }else if(x >= 350 && x < 647 && y >= 251 && y < 501 && blockt[1] == false){
-                    System.out.println("mal era el rino 2");
                     blockt[1] = true;
 
                 }else if(x >= 702 && x < 993 && y >= 251 && y < 501 && blockt[2] == false){
@@ -167,7 +140,6 @@ public class PlayerOne implements GameState {
                 break;
         }
     }
-
     public void update(){
         if(correct == true) {
             int iter = 0;

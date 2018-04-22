@@ -12,33 +12,28 @@ public class GameStateLoad implements GameState {
 
     public GameStateLoad(){}
 
-    public GameStateLoad(GameContext context){
-        this.context = context;
-    }
-
     public void setContext(GameContext context){
         this.context = context;
     }
 
     public void draw(Graphics g){
-        //System.out.println("Estoy en StateLoad bienvenido");
         i++;
         font = new Font("Arial", Font.BOLD, 50);
         color = new Color(6, 185, 3);
         g.setColor(color);
         g.setFont(font);
         g.drawImage(ImageLoader.getImageLoader().getBackground(),0,0,null);
-        g.drawString("Game will start in: \n", 300, 280);
+        g.drawString("Game will start in: \n", 300, 320);
         color = new Color(6, 185, 3);
-        g.drawString("Ready Player One! \n", 300, 150);
-        if(i < 100){
-            g.drawString("3",500, 380);
+        g.drawString("Ready Player One! \n", 300, 200);
+        if(i < 45){
+            g.drawString("3",500, 450);
         }
-        else if(i < 200){
-            g.drawString("2",500, 380);
+        else if(i < 90){
+            g.drawString("2",500, 450);
         }
-        else if(i < 300){
-            g.drawString("1",500, 380);
+        else if(i < 140){
+            g.drawString("1",500, 450);
         }
         else{
             playerOne();

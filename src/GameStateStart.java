@@ -12,12 +12,7 @@ public class GameStateStart implements GameState{
 
     public GameStateStart(){}
 
-    public GameStateStart(GameContext context){
-        this.context = context;
-    }
-
     public void draw(Graphics g) {
-        //System.out.println("Estoy en StateStart bienvenido");
         font = new Font("Verdana", Font.BOLD, 50);
         color = new Color(6, 185, 3);
         g.setColor(color);
@@ -43,8 +38,5 @@ public class GameStateStart implements GameState{
     public void update(){}
     public void win(int winner){}
     public void clickMouse(MouseEvent e) { load();}
-    public void processKey(KeyEvent e){
-
-    }
 
 }

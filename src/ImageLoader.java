@@ -1,6 +1,5 @@
 import java.awt.image.*;
 import java.io.*;
-import java.nio.Buffer;
 import javax.imageio.*;
 
 public class ImageLoader {
@@ -12,7 +11,6 @@ public class ImageLoader {
     private BufferedImage tigre;
     private BufferedImage zebra;
     private BufferedImage bad;
-    private BufferedImage good;
     private  BufferedImage background;
     public static ImageLoader imgLoader;
 
@@ -25,7 +23,6 @@ public class ImageLoader {
              tigre = ImageIO.read(new File("src\\imagenes_animales\\tigre.png"));
              zebra = ImageIO.read(new File("src\\imagenes_animales\\zebra.png"));
              bad = ImageIO.read(new File("src\\imagenes_animales\\bad.png"));
-             good = ImageIO.read(new File("src\\imagenes_animales\\good.png"));
              background = ImageIO.read(new File("src\\imagenes_animales\\background.jpg"));
         }
         catch(IOException e){}
@@ -41,36 +38,23 @@ public class ImageLoader {
     public BufferedImage getLion() {
         return leon;
     }
-
     public BufferedImage getBear() {
         return oso;
     }
-
     public BufferedImage getPolar_bear() {
         return oso_polar;
     }
-
     public BufferedImage getRhino() {
         return rinoceronte;
     }
-
     public BufferedImage getTiger() {
         return tigre;
     }
-
     public BufferedImage getZebra() {
         return zebra;
     }
-
     public BufferedImage getBackground() {
         return background;
     }
-
-    public BufferedImage getBad() {
-        return bad;
-    }
-
-    public BufferedImage getGood() {
-        return good;
-    }
+    public BufferedImage getBad() {return bad; }
 }

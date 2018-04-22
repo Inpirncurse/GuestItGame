@@ -6,26 +6,24 @@ public class GameStateOver implements GameState {
 
     GameContext context;
     private int i;
+    Font font;
     private Color color;
 
     public GameStateOver(){}
-    public GameStateOver(GameContext context){
-        this.context = context;
-    }
     public void draw(Graphics g){
-        color=new Color(122, 24, 232);
+        i++;
+        font = new Font("Verdana", Font.BOLD, 50);
+        color = new Color(6, 185, 3);
         g.setColor(color);
         g.drawImage(ImageLoader.getImageLoader().getBackground(),0,0,null);
-        g.drawString("Game over",200, 200);
-        if(i>200){
-            context.setState(this);
+        g.drawString("Game over",370, 400);
+        if(i > 100){
+            System.exit(0);
         }
     }
     public void setContext(GameContext context){
         this.context = context;
     }
-
-    public void processKey(KeyEvent e){}
     public void clickMouse(MouseEvent e) {}
     public void start(){}
     public void load(){}

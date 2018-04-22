@@ -38,10 +38,6 @@ public class HUD {
         return p2;
     }
 
-    public int getTimes(int player, int turn){
-        return times[player][turn];
-    }
-
     public int setTimes(int player, int turn, int timeRound){
         return times[player][turn] = timeRound;
     }
@@ -51,13 +47,14 @@ public class HUD {
     }
 
     public void hud(Graphics g, int round){
-        g.drawString("Time: " + time, 30, 200);
-        g.drawString("Round " + round, 200, 200);
-//        g.drawString("Round 1: ", 200,600);
-//        g.drawString(" " + times[turns][0], 200,825);
-//        g.drawString("Round 2: ", 200,600);
-//        g.drawString(" " + times[turns][1], 325,825);
-//        g.drawString("Round 3: ", 200,600);
-//        g.drawString(" " + times[turns][2], 450,825);
+        g.drawString("Time: "+ time, 50, 200);
+        g.drawString("Round: "+ round, 250, 200);
+        g.drawString("Times: ", 75, 425);
+        g.drawString("Round 1: ", 125, 625);
+        g.drawString("" + times[turns][0], 155,660);
+        g.drawString("Round 2: ", 425, 625);
+        g.drawString("" + times[turns][1], 455,660);
+        g.drawString("Round 3: ", 725, 625);
+        g.drawString("" + times[turns][2], 755,660);
     }
 }

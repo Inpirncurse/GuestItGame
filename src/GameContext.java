@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 
 
 public class GameContext {
-
     GameState start;
     GameState load;
     GameState playerOne;
@@ -13,12 +12,8 @@ public class GameContext {
     GameState winTwo;
     GameState over;
     GameState currentState;
-    GetImage image;
-
-
 
     public GameContext() {
-
         start = Factory.getInstance().createState("start");
         load = Factory.getInstance().createState("load");
         playerOne = Factory.getInstance().createState("playerOne");
@@ -27,8 +22,6 @@ public class GameContext {
         winOne = Factory.getInstance().createState("winOne");
         winTwo = Factory.getInstance().createState("winTwo");
 
-       // image = Factory.getInstance().createState();
-
         start.setContext(this);
         load.setContext(this);
         playerOne.setContext(this);
@@ -36,32 +29,24 @@ public class GameContext {
         over.setContext(this);
         winOne.setContext(this);
         winTwo.setContext(this);
-
         currentState = start;
     }
-
-    public GameState getGameStartState(){ return start;}
     public GameState getGameLoadState(){return load;}
     public GameState getPlayerOne(){return playerOne;}
     public GameState getPlayerTwo(){return playerTwo;}
     public GameState getGameStateOver(){return over;}
     public void update(){ currentState.update();}
-
     public GameState getGameStateWin(int winner){
         if(winner==1){
             return winOne;
-        }
-        else{
+        }else{
             return winTwo;
         }
     }
     public void setState(GameState state){
         this.currentState = state;
     }
-    public void setContext(GameContext cont){ }
-    public void processKey(KeyEvent e){
-        currentState.processKey(e);
-    }
+
     public void clickMouse(MouseEvent e) {
         currentState.clickMouse(e);
     }

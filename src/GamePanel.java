@@ -1,9 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.text.DecimalFormat;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -11,7 +9,6 @@ public class GamePanel extends JPanel implements Runnable {
     private static final int PHEIGHT = 800;
     private Thread animator;
     private volatile boolean over = false;
-    private String s;
     private GameContext game;
 
     public GamePanel(){
@@ -19,7 +16,6 @@ public class GamePanel extends JPanel implements Runnable {
         setPreferredSize(new Dimension(PWIDTH,PHEIGHT));
         setFocusable(true);
         requestFocus();
-        readyForTermination();
         game = new GameContext();
 
         addMouseListener(new MouseAdapter(){
@@ -80,29 +76,10 @@ public class GamePanel extends JPanel implements Runnable {
         game.draw(dbg);
     }
 
-    private void gameOverMessage(){
-        Graphics g;
-        g = this.getGraphics();
-        g.drawString("GameOver try again next time!",10,10);
-    }
-
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         if(dbImage != null)
             g.drawImage(dbImage, 0, 0, null);
-    }
-
-    private void readyForTermination() {
-
-        addKeyListener( new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                int keyCode = e.getKeyCode();
-                game.processKey(e);
-                if ((keyCode == KeyEvent.VK_ESCAPE) || (keyCode == KeyEvent.VK_END) || ((keyCode == KeyEvent.VK_C) && e.isControlDown()) ) {
-                    over = true;
-                }
-            }
-        });
     }
 
     private void paintScreen(){
@@ -116,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
         catch(Exception e){
-            System.out.println("Graphics context error: "+e);
+            System.out.println("Error: "+e);
         }
     }
 
