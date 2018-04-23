@@ -27,7 +27,6 @@ public class ImageLoader {
         }
         catch(IOException e){}
     }
-
     public static ImageLoader getImageLoader(){
         if(imgLoader == null){
             imgLoader = new ImageLoader();

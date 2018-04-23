@@ -11,11 +11,9 @@ public class GameStateLoad implements GameState {
     private Font font;
 
     public GameStateLoad(){}
-
     public void setContext(GameContext context){
         this.context = context;
     }
-
     public void draw(Graphics g){
         i++;
         font = new Font("Arial", Font.BOLD, 50);
@@ -39,8 +37,6 @@ public class GameStateLoad implements GameState {
             playerOne();
         }
     }
-
-    public void processKey(KeyEvent e){}
     public void clickMouse(MouseEvent e) {}
     public void start(){}
     public void load(){}

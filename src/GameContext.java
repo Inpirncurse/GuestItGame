@@ -1,7 +1,5 @@
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
 
 public class GameContext {
     GameState start;
@@ -14,13 +12,13 @@ public class GameContext {
     GameState currentState;
 
     public GameContext() {
-        start = Factory.getInstance().createState("start");
-        load = Factory.getInstance().createState("load");
-        playerOne = Factory.getInstance().createState("playerOne");
-        playerTwo = Factory.getInstance().createState("playerTwo");
-        over = Factory.getInstance().createState("over");
-        winOne = Factory.getInstance().createState("winOne");
-        winTwo = Factory.getInstance().createState("winTwo");
+        start = Factory.getInstance().newState("start");
+        load = Factory.getInstance().newState("load");
+        playerOne = Factory.getInstance().newState("playerOne");
+        playerTwo = Factory.getInstance().newState("playerTwo");
+        over = Factory.getInstance().newState("over");
+        winOne = Factory.getInstance().newState("winOne");
+        winTwo = Factory.getInstance().newState("winTwo");
 
         start.setContext(this);
         load.setContext(this);
@@ -43,20 +41,10 @@ public class GameContext {
             return winTwo;
         }
     }
-    public void setState(GameState state){
-        this.currentState = state;
-    }
-
-    public void clickMouse(MouseEvent e) {
-        currentState.clickMouse(e);
-    }
-
-    public void draw(Graphics g){
-        currentState.draw(g);
-    }
-    public void start(){
-        currentState.start();
-    }
+    public void setState(GameState state){this.currentState = state;}
+    public void clickMouse(MouseEvent e) {currentState.clickMouse(e);}
+    public void draw(Graphics g){currentState.draw(g);}
+    public void start(){currentState.start();}
 
 
 }

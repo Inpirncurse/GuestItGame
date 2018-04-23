@@ -1,13 +1,7 @@
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.io.*;
-import java.util.*;
 
 interface GameState {
-
     public void draw(Graphics g);
     public void clickMouse(MouseEvent e);
     public void start();

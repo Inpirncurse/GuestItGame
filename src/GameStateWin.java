@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class GameStateWin implements GameState {
@@ -12,7 +11,6 @@ public class GameStateWin implements GameState {
     public GameStateWin(int p){
         player = p;
     }
-
     public void draw(Graphics g){
         i++;
         font = new Font("Arial", Font.BOLD, 50);
@@ -24,16 +22,15 @@ public class GameStateWin implements GameState {
         g.drawString("Congratulations player "+ player + "!!!", 150, 250);
         g.drawString("Player One : ", 200, 450);
         g.drawString("Player Two : ", 200, 650);
-        g.drawString(HUD.getHud().getP1() + " Sec", 600, 450);
-        g.drawString(HUD.getHud().getP2() + " Sec", 600, 650);
+        g.drawString(HUD.getHud().getP1() + "pts", 600, 450);
+        g.drawString(HUD.getHud().getP2() + "pts", 600, 650);
         font = new Font("Arial", Font.BOLD, 50);
         color = new Color(6, 185, 3);
         g.setColor(color);
         g.setFont(font);
-        if(i > 100){
+        if(i > 200){
             over();
         }
-
     }
     public void setContext(GameContext context){
         this.context = context;
@@ -46,5 +43,4 @@ public class GameStateWin implements GameState {
     public void update(){}
     public void win(int winner){}
     public void over(){context.setState(context.getGameStateOver()); }
-
 }
